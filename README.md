@@ -55,6 +55,36 @@ On OpenBSD, be sure to edit `config.mk` first and remove `-lrt` from the
 Be sure to have a composite manager (`xcompmgr`, `picom`, etc.) running if you
 want transparency.
 
+### Font Config
+
+If you want font awesome glyphs to work make sure to have the font awesome 5 fonts installed and the following in your font config (/etc/fonts/fonts.conf or ~/.config/fontconfig/fonts.conf)
+
+```
+<!--
+  Accept alternate 'fontawesome' spelling
+-->
+    <match target="pattern">
+        <test qual="any" name="family">
+            <string>fontawesome</string>
+        </test>
+        <edit name="family" mode="assign" binding="same">
+            <string>Font Awesome 5 Free Solid</string>
+        </edit>
+    </match>
+<!--
+  Accept alternate 'fontawesomebrands' spelling
+-->
+    <match target="pattern">
+        <test qual="any" name="family">
+            <string>fontawesomebrands</string>
+        </test>
+        <edit name="family" mode="assign" binding="same">
+            <string>Font Awesome 5 Brands</string>
+        </edit>
+    </match>
+
+```
+
 ## How to configure dynamically with Xresources
 
 For many key variables, this build of `st` will look for X settings set in
